@@ -31,14 +31,15 @@ fun MainScreen1Screen(
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
-    LaunchedEffect(Unit) {
-//        viewModel.uiEffect.collect { effect ->
-//            when (effect) {
-//                is MainScreen1Contract.ViewEffect.NavigateToDetail -> {
-//                    navigateToDetail(effect.songId)
-//                }
-//            }
-//        }
+    LaunchedEffect(Unit) { // lắng nghe sự kiện từ viewmodel tại đây
+        viewModel.sideEffect.collect { effect ->
+            when (effect) {
+
+                else -> {
+
+                }
+            }
+        }
     }
 
     MainScreen1Content(
