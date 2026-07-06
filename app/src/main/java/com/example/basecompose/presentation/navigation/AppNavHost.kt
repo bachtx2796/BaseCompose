@@ -13,6 +13,8 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.example.basecompose.presentation.screen.detail.detailScreen
 import com.example.basecompose.presentation.screen.detail.navigateToDetail
+import com.example.basecompose.presentation.screen.hdsd.hdsdScreen
+import com.example.basecompose.presentation.screen.hdsd.navigateToHdsd
 import com.example.basecompose.presentation.screen.mainscreen1.mainScreen1
 import com.example.basecompose.presentation.screen.mainscreen2.mainScreen2
 import com.example.basecompose.presentation.screen.mainscreen3.mainScreen3
@@ -40,6 +42,9 @@ fun AppNavHost(
                 },
                 navigateToSignin = {
                     navController.navigateToAuth()
+                },
+                navigateToHdsd = {
+                    navController.navigateToHdsd()
                 }
             )
         }
@@ -48,7 +53,11 @@ fun AppNavHost(
             onBack = navController::popBackStack
         )
 
-        navigation<AuthRoute.Graph>(
+        hdsdScreen(
+            onBack = navController::popBackStack
+        )
+
+        navigation<AuthRoute>(
             startDestination = AuthRoute.SignIn
         ) {
 
@@ -57,7 +66,7 @@ fun AppNavHost(
                 onNavigateToSignUp = { navController.navigateToSignUp() },
                 onLoginSuccess = {
                     navController.navigate(RootRoute.Main) {
-                        popUpTo<AuthRoute.Graph> {
+                        popUpTo<AuthRoute> {
                             inclusive = true
                         }
                     }
@@ -74,7 +83,8 @@ fun AppNavHost(
 @Composable
 fun MainScreenContainer(
     navigateToDetail: (Int) -> Unit,
-    navigateToSignin: () -> Unit
+    navigateToSignin: () -> Unit,
+    navigateToHdsd: () -> Unit
 ) {
     val tabNavController = rememberNavController()
     val appState = remember(tabNavController) { AppState(tabNavController) }
@@ -91,7 +101,8 @@ fun MainScreenContainer(
         ) {
             mainScreen1(
                 navigateToDetail = navigateToDetail,
-                navigateToSignIn = navigateToSignin
+                navigateToSignIn = navigateToSignin,
+                navigateToHdsd = navigateToHdsd
             )
 
             mainScreen2()

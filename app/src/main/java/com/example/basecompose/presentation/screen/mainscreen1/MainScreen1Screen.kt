@@ -27,6 +27,7 @@ import com.example.basecompose.presentation.screen.mainscreen1.model.SongItem
 fun MainScreen1Screen(
     navigateToDetail: (Int) -> Unit,
     navigateToSignIn: () -> Unit,
+    navigateToHdsd: () -> Unit,
     viewModel: MainScreen1ViewModel = hiltViewModel()
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
@@ -45,7 +46,8 @@ fun MainScreen1Screen(
     MainScreen1Content(
         uiState = uiState.value,
         navigateToDetail,
-        navigateToSignIn
+        navigateToSignIn,
+        navigateToHdsd
     )
 }
 
@@ -53,7 +55,8 @@ fun MainScreen1Screen(
 private fun MainScreen1Content(
     uiState: MainScreen1Contract.ViewState,
     navigateToDetail: (Int) -> Unit,
-    navigateToSignIn: () -> Unit
+    navigateToSignIn: () -> Unit,
+    navigateToHdsd: () -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -67,6 +70,15 @@ private fun MainScreen1Content(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(text = "Sign in")
+            }
+        }
+
+        item {
+            Button(
+                onClick = navigateToHdsd,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Hướng dẫn sử dụng")
             }
         }
 

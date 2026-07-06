@@ -8,7 +8,7 @@ import com.example.basecompose.ext.sharedGraphViewModel
 import com.example.basecompose.presentation.navigation.AuthRoute
 
 fun NavController.navigateToAuth(navOptions: NavOptions? = null) {
-    navigate(AuthRoute.Graph, navOptions)
+    navigate(AuthRoute, navOptions)
 }
 
 fun NavGraphBuilder.signInScreen(
@@ -19,7 +19,7 @@ fun NavGraphBuilder.signInScreen(
     composable<AuthRoute.SignIn> { backStackEntry ->
         val shareVM: SigninViewModel = backStackEntry.sharedGraphViewModel(
             navController = navController,
-            graphRoute = AuthRoute.Graph
+            graphRoute = AuthRoute
         )
 
         SignInScreen(

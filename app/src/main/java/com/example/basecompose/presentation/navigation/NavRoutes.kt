@@ -2,35 +2,33 @@ package com.example.basecompose.presentation.navigation
 
 import kotlinx.serialization.Serializable
 
-sealed interface AppRoute
-sealed interface AppGraph : AppRoute
-
 object RootRoute {
     @Serializable
-    object Main : AppRoute
+    object Main
 
     @Serializable
-    data class Detail(val songId: Int) : AppRoute
+    data class Detail(val songId: Int)
+
+    @Serializable
+    object Hdsd
 }
 
+@Serializable
 object AuthRoute {
     @Serializable
-    object Graph : AppGraph
+    object SignIn
 
     @Serializable
-    object SignIn : AppRoute
-
-    @Serializable
-    object SignUp : AppRoute
+    object SignUp
 }
 
 object MainTabRoute {
     @Serializable
-    object MainScreen1 : AppRoute
+    object MainScreen1
 
     @Serializable
-    object MainScreen2 : AppRoute
+    object MainScreen2
 
     @Serializable
-    object MainScreen3 : AppRoute
+    object MainScreen3
 }
