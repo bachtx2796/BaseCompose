@@ -1,0 +1,30 @@
+# ===== Gradle =====
+.gradle/
+**/build/
+
+# ===== Kotlin =====
+.kotlin/
+
+# ===== Local config =====
+local.properties
+
+# ===== Android Studio =====
+.idea/
+*.iml
+
+# ===== macOS =====
+.DS_Store
+
+# ===== NDK =====
+.externalNativeBuild/
+.cxx/
+
+# ===== Keystore =====
+*.jks
+*.keystore
+
+# ===== Logs =====
+*.log
+
+# ===== Captures =====
+captures/
