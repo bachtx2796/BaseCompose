@@ -12,7 +12,7 @@ fun NavController.navigateToMainScreen1(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.mainScreen1(
     navigateToDetail: (Int) -> Unit,
-    navigateToSignIn: () -> Unit,
+    navigateToSignIn: (Int) -> Unit,
     navigateToHdsd: () -> Unit
 ) {
     composable<MainTabRoute.MainScreen1> {

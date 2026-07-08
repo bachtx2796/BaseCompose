@@ -18,10 +18,8 @@ import com.example.basecompose.presentation.screen.hdsd.navigateToHdsd
 import com.example.basecompose.presentation.screen.mainscreen1.mainScreen1
 import com.example.basecompose.presentation.screen.mainscreen2.mainScreen2
 import com.example.basecompose.presentation.screen.mainscreen3.mainScreen3
-import com.example.basecompose.presentation.screen.signin.SigninViewModel
-import com.example.basecompose.presentation.screen.signin.navigateToAuth
+import com.example.basecompose.presentation.screen.auth.navigateToAuth
 import com.example.basecompose.presentation.screen.signin.signInScreen
-import com.example.basecompose.presentation.screen.signup.navigateToSignUp
 import com.example.basecompose.presentation.screen.signup.signUpScreen
 import com.example.basecompose.presentation.ui.AppBottomBar
 
@@ -40,8 +38,10 @@ fun AppNavHost(
                 navigateToDetail = { songId ->
                     navController.navigateToDetail(songId)
                 },
-                navigateToSignin = {
-                    navController.navigateToAuth()
+                navigateToSignin = { songId ->
+                    // một lối vào duy nhất — route data quyết định start ở đâu
+                    navController.navigateToAuth(songId, start = AuthStart.SignIn)
+                    // muốn mở thẳng SignUp: navigateToAuth(songId, AuthStart.SignUp)
                 },
                 navigateToHdsd = {
                     navController.navigateToHdsd()
@@ -58,12 +58,11 @@ fun AppNavHost(
         )
 
         navigation<AuthRoute>(
-            startDestination = AuthRoute.SignIn
+            startDestination = AuthRoute.SignIn::class
         ) {
 
             signInScreen(
                 navController = navController,
-                onNavigateToSignUp = { navController.navigateToSignUp() },
                 onLoginSuccess = {
                     navController.navigate(RootRoute.Main) {
                         popUpTo<AuthRoute> {
@@ -74,6 +73,7 @@ fun AppNavHost(
             )
 
             signUpScreen(
+                navController = navController,
                 onBack = { navController.popBackStack() }
             )
         }
@@ -83,7 +83,7 @@ fun AppNavHost(
 @Composable
 fun MainScreenContainer(
     navigateToDetail: (Int) -> Unit,
-    navigateToSignin: () -> Unit,
+    navigateToSignin: (Int) -> Unit,
     navigateToHdsd: () -> Unit
 ) {
     val tabNavController = rememberNavController()

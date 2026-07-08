@@ -12,12 +12,11 @@ import androidx.navigation.NavController
  * trong cùng graph). Phải gọi bên trong lambda của `composable { backStackEntry -> }`.
  */
 @Composable
-inline fun <reified VM : ViewModel> NavBackStackEntry.sharedGraphViewModel(
+inline fun <reified VM : ViewModel, reified Graph : Any> NavBackStackEntry.sharedGraphViewModel(
     navController: NavController,
-    graphRoute: Any
 ): VM {
     val parentEntry = remember(this) {
-        navController.getBackStackEntry(graphRoute)
+        navController.getBackStackEntry<Graph>()
     }
     return hiltViewModel<VM>(parentEntry)
 }

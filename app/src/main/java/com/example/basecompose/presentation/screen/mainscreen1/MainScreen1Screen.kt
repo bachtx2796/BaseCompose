@@ -26,7 +26,7 @@ import com.example.basecompose.presentation.screen.mainscreen1.model.SongItem
 @Composable
 fun MainScreen1Screen(
     navigateToDetail: (Int) -> Unit,
-    navigateToSignIn: () -> Unit,
+    navigateToSignIn: (Int) -> Unit,
     navigateToHdsd: () -> Unit,
     viewModel: MainScreen1ViewModel = hiltViewModel()
 ) {
@@ -55,7 +55,7 @@ fun MainScreen1Screen(
 private fun MainScreen1Content(
     uiState: MainScreen1Contract.ViewState,
     navigateToDetail: (Int) -> Unit,
-    navigateToSignIn: () -> Unit,
+    navigateToSignIn: (Int) -> Unit,
     navigateToHdsd: () -> Unit
 ) {
     LazyColumn(
@@ -66,7 +66,7 @@ private fun MainScreen1Content(
 
         item {
             Button(
-                onClick = navigateToSignIn,
+                onClick = { navigateToSignIn(1) }, // demo: push songId vào AuthGraph
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(text = "Sign in")

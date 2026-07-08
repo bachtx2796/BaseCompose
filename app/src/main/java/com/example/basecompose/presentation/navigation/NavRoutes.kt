@@ -13,13 +13,16 @@ object RootRoute {
     object Hdsd
 }
 
+/** Journey mở ra ở màn nào — dữ liệu quyết định start, do [navigateToAuth] xử lý. */
+enum class AuthStart { SignIn, SignUp }
+
 @Serializable
 object AuthRoute {
     @Serializable
-    object SignIn
+    data class SignIn(val songId: Int)
 
     @Serializable
-    object SignUp
+    data class SignUp(val songId: Int)
 }
 
 object MainTabRoute {
